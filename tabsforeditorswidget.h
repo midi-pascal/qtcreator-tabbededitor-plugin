@@ -13,13 +13,15 @@ namespace Core {
 class IEditor;
 }
 
+namespace Core {
+class ICore;
+}
 namespace TabbedEditor {
 namespace Internal {
 
 class TabsForEditorsWidget : public QWidget
 {
     Q_OBJECT
-
 public:
     TabsForEditorsWidget(QWidget * parent = 0);
 
@@ -35,16 +37,17 @@ private slots:
     void updateTabText();
     void prevTabAction();
     void nextTabAction();
-
+		void restoreSession();
 
 private:
     Core::IEditor *getEditor(QWidget *getTab) const;
+
     QWidget *getTab(Core::IEditor *getEditor) const;
     bool isEditorWidget(QObject *obj) const;
 
     QTabWidget *m_tabWidget;
-    QMap<QWidget*, Core::IEditor*> m_tabsEditors;
-    QList<QShortcut*> m_tabShortcuts;
+    QMap<QWidget *, Core::IEditor *> m_tabsEditors;
+    QList<QShortcut *> m_tabShortcuts;
 };
 
 } // namespace Internal
